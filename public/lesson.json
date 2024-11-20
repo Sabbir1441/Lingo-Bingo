@@ -1,0 +1,52 @@
+[
+    {
+        "id": "1",
+        "lesson_no": 1,
+        "title": "Introduction to Basic Greetings"
+    },
+    {
+        "id": "2",
+        "lesson_no": 2,
+        "title": "Family and Relationships Vocabulary"
+    },
+    {
+        "id": "3",
+        "lesson_no": 3,
+        "title": "Daily Activities and Routines"
+    },
+    {
+        "id": "4",
+        "lesson_no": 4,
+        "title": "Essential Foods and Drinks"
+    },
+    {
+        "id": "5",
+        "lesson_no": 5,
+        "title": "Understanding Directions and Places"
+    },
+    {
+        "id": "6",
+        "lesson_no": 6,
+        "title": "Colors and Descriptions"
+    },
+    {
+        "id": "7",
+        "lesson_no": 7,
+        "title": "Shopping and Money Terminology"
+    },
+    {
+        "id": "8",
+        "lesson_no": 8,
+        "title": "Weather and Seasons Vocabulary"
+    },
+    {
+        "id": "9",
+        "lesson_no": 9,
+        "title": "Time and Calendar Terms"
+    },
+    {
+        "id": "10",
+        "lesson_no": 10,
+        "title": "Polite Phrases and Expressions"
+    }
+]
