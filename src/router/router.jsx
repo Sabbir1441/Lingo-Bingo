@@ -1,6 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import MainLayout from "../pages/MainLayout";
+import StartLearning from "../pages/StartLearning";
+import Tutorials from "../pages/Tutorials";
+import About from "../pages/About";
+import Profile from "../pages/Profile";
+import Lessons from "../pages/Lessons";
 
 const router = createBrowserRouter([
     {
@@ -14,15 +19,23 @@ const router = createBrowserRouter([
             },
             {
                 path: "/start-learning",
-                element: <h1>this is learning</h1>,
+                element: <StartLearning></StartLearning>,
             },
             {
                 path: "/tutorials",
-                element: <h1>this is tutorials </h1>,
+                element: <Tutorials></Tutorials>,
             },
             {
                 path: "/about",
-                element: <h1>this is about</h1>,
+                element: <About></About>,
+            },
+            {
+                path: "/profile",
+                element: <Profile></Profile>,
+            },
+            {
+                path: "/lessons",
+                element: <Lessons></Lessons>,
             },
 
         ]

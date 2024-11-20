@@ -1,21 +1,23 @@
-import { Link } from "react-router-dom";
-import logo from "../assets/images.jpeg"
+import { NavLink } from "react-router-dom";
+import logo from "../assets/images.jpg";
+import "./Nav.css";
 
 const NavBar = () => {
     return (
         <div className="flex justify-between items-center  py-4 w-11/12 mx-auto">
-            <img className="w-[70px] rounded-full" src={logo} />
+            <NavLink to="/"><img className="w-[70px] rounded-full" src={logo} /></NavLink>
 
-            <ul className="flex gap-4 font-semibold text-lg text-white">
-                <Link to="/">Home</Link>
-                <Link to="/start-learning">Start-Learning</Link>
-                <Link to="/tutorials">Tutorials</Link>
-                <Link to="/about">About</Link>
+            <ul className=" flex flex-col  md:flex-row gap-4 font-semibold text-lg text-white">
+                <NavLink to="/">Home</NavLink>
+                <NavLink to="/start-learning">Start-Learning</NavLink>
+                <NavLink to="/tutorials">Tutorials</NavLink>
+                <NavLink to="/about">About</NavLink>
+                <NavLink to="/profile">Profile</NavLink>
             </ul>
 
             <div className="flex gap-4">
                 <button className="font-semibold text-lg text-white">photo</button>
-                <button className="font-semibold text-lg text-white">log in</button>
+                <button className="btn btn-active btn-neutral">log in</button>
             </div>
         </div>
     );
