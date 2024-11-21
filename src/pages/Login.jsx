@@ -44,7 +44,7 @@ const Login = () => {
                             Login
                         </button>
                     </div>
-                    <p className="text-center font-semibold">Don't have an account ? <Link to="/auth/register"><span className="text-red-500">Register</span></Link></p>
+                    <p className="text-center font-semibold">Dont have an account ? <Link to="/auth/register"><span className="text-red-500">Register</span></Link></p>
 
                     {/* Divider */}
                     <div className="divider text-neutral-500 mt-6">OR</div>

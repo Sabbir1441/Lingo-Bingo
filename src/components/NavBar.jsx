@@ -2,8 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/images.jpg";
 import userlogo from "../assets/free-user-icon-3296-thumb.png";
 import "./Nav.css";
+import { useContext } from "react";
+import { AuthContext } from "../provider/AuthProvider";
 
 const NavBar = () => {
+    const {user} = useContext(AuthContext);
     return (
         <div className="flex justify-between items-center  py-4 w-11/12 mx-auto">
             <NavLink to="/"><img className="w-[70px] rounded-full" src={logo} /></NavLink>
