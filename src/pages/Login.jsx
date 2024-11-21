@@ -1,10 +1,32 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
+
+    const {userLogin, setUser} = useContext(AuthContext);
+
+        const handleSubmit = (e)=> {
+            e.preventDefault();
+
+            const form = e.target;
+            const email = form.email.value;
+            const password = form.password.value;
+            console.log({email,password})
+            userLogin(email,password)
+            .then((result) => {
+                const user = result.user;
+                setUser(user)
+            })
+            .catch((error) => {
+                alert(error.code);
+            })
+        };
+
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="card bg-white w-full max-w-md shadow-xl rounded-lg">
-                <form className="card-body px-8 py-10">
+        <div className="flex items-center justify-center min-h-screen bg-[#97CBDC]">
+            <div className="card bg-white w-full max-w-md shadow-2xl rounded-lg">
+                <form onSubmit={handleSubmit} className="card-body px-8 py-10">
                     <h2 className="text-2xl font-bold text-neutral-600 text-center mb-6">Login to Your Account</h2>
 
                     {/* Email Field */}
@@ -13,6 +35,7 @@ const Login = () => {
                             <span className="label-text text-neutral-700">Email</span>
                         </label>
                         <input
+                        name="email"
                             type="email"
                             placeholder="Enter your email"
                             className="input input-bordered border-neutral-300 focus:outline-none focus:ring focus:ring-neutral-200 transition duration-300"
@@ -26,6 +49,7 @@ const Login = () => {
                             <span className="label-text text-neutral-700">Password</span>
                         </label>
                         <input
+                        name="password"
                             type="password"
                             placeholder="Enter your password"
                             className="input input-bordered border-neutral-300 focus:outline-none focus:ring focus:ring-neutral-200 transition duration-300"

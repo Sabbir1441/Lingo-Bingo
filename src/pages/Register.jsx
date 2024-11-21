@@ -1,10 +1,37 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../provider/AuthProvider";
 
 const Register = () => {
+    const { createNewUser, setUser } = useContext(AuthContext);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const form = new FormData(e.target);
+        const name = form.get("name");
+        const email = form.get("email");
+        const photo = form.get("photo");
+        const password = form.get("password");
+        console.log({name, email, photo, password});
+
+        createNewUser(email, password)
+        .then((result)=>{
+            const user = result.user;
+            setUser(user)
+            console.log(user)
+        })
+        .catch((error)=>{
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode,errorMessage)
+        })
+    }
+
     return (
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+        <div className="flex items-center justify-center min-h-screen bg-[#97CBDC]">
             <div className="card bg-white w-full max-w-md shadow-xl rounded-lg">
-                <form className="card-body px-8 py-10">
+                <form onSubmit={handleSubmit} className="card-body px-8 py-10">
                     <h2 className="text-2xl font-bold text-neutral-600 text-center mb-6">
                         Create Your Account
                     </h2>
@@ -15,6 +42,7 @@ const Register = () => {
                             <span className="label-text text-neutral-700">Name</span>
                         </label>
                         <input
+                            name="name"
                             type="text"
                             placeholder="Enter your name"
                             className="input input-bordered border-neutral-300 focus:outline-none focus:ring focus:ring-neutral-200 transition duration-300"
@@ -28,6 +56,7 @@ const Register = () => {
                             <span className="label-text text-neutral-700">Email</span>
                         </label>
                         <input
+                            name="email"
                             type="email"
                             placeholder="Enter your email"
                             className="input input-bordered border-neutral-300 focus:outline-none focus:ring focus:ring-neutral-200 transition duration-300"
@@ -41,6 +70,7 @@ const Register = () => {
                             <span className="label-text text-neutral-700">Photo URL</span>
                         </label>
                         <input
+                            name="photo"
                             type="url"
                             placeholder="Enter your photo URL"
                             className="input input-bordered border-neutral-300 focus:outline-none focus:ring focus:ring-neutral-200 transition duration-300"
@@ -53,6 +83,7 @@ const Register = () => {
                             <span className="label-text text-neutral-700">Password</span>
                         </label>
                         <input
+                            name="password"
                             type="password"
                             placeholder="Enter your password"
                             className="input input-bordered border-neutral-300 focus:outline-none focus:ring focus:ring-neutral-200 transition duration-300"
@@ -76,7 +107,7 @@ const Register = () => {
                             <span className="text-red-500">Login</span>
                         </Link>
                     </p>
-                    
+
                 </form>
             </div>
         </div>

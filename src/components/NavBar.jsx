@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/images.jpg";
 import userlogo from "../assets/free-user-icon-3296-thumb.png";
@@ -6,7 +7,7 @@ import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 
 const NavBar = () => {
-    const {user} = useContext(AuthContext);
+    const { user , logOut } = useContext(AuthContext);
     return (
         <div className="flex justify-between items-center  py-4 w-11/12 mx-auto">
             <NavLink to="/"><img className="w-[70px] rounded-full" src={logo} /></NavLink>
@@ -21,7 +22,11 @@ const NavBar = () => {
 
             <div className="flex gap-4">
                 <img className="w-[50px]" src={userlogo} alt="" />
-                <Link to="/auth/login"><button className="btn btn-active btn-neutral">log in</button></Link>
+                {
+                    user && user?.email ? (<button onClick={logOut} className="btn btn-active btn-neutral">Log out</button>
+                    ) : (<Link to="/auth/login"><button className="btn btn-active btn-neutral">log in</button></Link>)
+                }
+
             </div>
         </div>
     );
