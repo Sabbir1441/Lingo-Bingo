@@ -6,6 +6,9 @@ import Tutorials from "../pages/Tutorials";
 import About from "../pages/About";
 import Profile from "../pages/Profile";
 import Lessons from "../pages/Lessons";
+import AuthLayout from "../pages/AuthLayout";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const router = createBrowserRouter([
     {
@@ -45,7 +48,17 @@ const router = createBrowserRouter([
 
     {
         path: "/auth",
-        element: <h1>login</h1>,
+        element: <AuthLayout></AuthLayout>,
+        children: [
+            {
+                path: "/auth/login",
+                element: <Login></Login>
+            },
+            {
+                path: "/auth/register",
+                element: <Register></Register>
+            }
+        ]
     },
     {
         path: "*",
