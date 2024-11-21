@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import LessonCard from "../components/LessonCard";
 
 const StartLearning = () => {
@@ -23,17 +23,18 @@ const StartLearning = () => {
                 <p className="text-lg mb-6 text-gray-700">Watch this tutorial video to get started with learning the alphabet in your new language.</p>
 
                 <div className="w-full flex justify-center">
-                    <iframe className="rounded-2xl" width="560" height="315" src="https://www.youtube.com/embed/X1mC1XY65Kc?si=AAlXacuIM9mKbSRl" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+                    <iframe className="rounded-2xl" width="560" height="315" src="https://www.youtube.com/embed/X1mC1XY65Kc?si=AAlXacuIM9mKbSRl" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen>
                     </iframe>
                 </div>
             </div>
 
             <div className="text-center mt-8">
-                <button
-                    className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-full shadow-md hover:bg-blue-600 transition duration-300"
-                >
-                    View More Tutorials
-                </button>
+                <Link to="/tutorials">
+                    <button
+                        className="px-6 py-3 bg-blue-500 text-white font-semibold rounded-full shadow-md hover:bg-blue-600 transition duration-300"
+                    >
+                        View More Tutorials
+                    </button></Link>
             </div>
         </div>
     );
