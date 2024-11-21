@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import logo from "../assets/images.jpg";
+import userlogo from "../assets/free-user-icon-3296-thumb.png";
 import "./Nav.css";
 
 const NavBar = () => {
@@ -16,7 +17,7 @@ const NavBar = () => {
             </ul>
 
             <div className="flex gap-4">
-                <button className="font-semibold text-lg text-white">photo</button>
+                <img className="w-[50px]" src={userlogo} alt="" />
                 <button className="btn btn-active btn-neutral">log in</button>
             </div>
         </div>

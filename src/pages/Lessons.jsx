@@ -1,8 +1,20 @@
+/* eslint-disable no-unused-vars */
+import {useLoaderData, useParams } from "react-router-dom";
+import Words from "../components/Words";
 
 const Lessons = () => {
+
+    const {lesson_id} = useParams()
+
+    const data = useLoaderData()
+    console.log(data)
+
+
     return (
-        <div>
-            <h2>this is lesson section</h2>
+        <div className="w-11/12 mx-auto grid md:grid-cols-2 lg:grid-cols-3">
+            {
+                data.map(words => <Words key={words.id} words={words}></Words>)
+            }
         </div>
     );
 };

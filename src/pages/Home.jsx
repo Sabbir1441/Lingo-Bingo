@@ -3,11 +3,27 @@ import img1 from "../assets/1.jpg";
 import img2 from "../assets/2.jpg";
 import img3 from "../assets/3.jpg";
 import img4 from "../assets/4.avif";
+import { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import "animate.css";
+
+
 
 const Home = () => {
+
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            easing: "ease-in-out",
+            once: true,
+        });
+    }, []);
+
+
     return (
         <div>
-            <div className="carousel w-full h-[500px]">
+            <div className="carousel w-full h-[500px]" data-aos="fade-up">
                 <div id="item1" className="carousel-item w-full">
                     <img
                         src={img1}
@@ -36,7 +52,7 @@ const Home = () => {
                 <a href="#item4" className="btn btn-xs">4</a>
             </div>
 
-            <section className="py-12 text-center bg-gray-100">
+            <section className="py-12 text-center bg-gray-100" data-aos="fade-up">
                 <div className="container mx-auto px-4">
                     <h2 className="text-4xl font-bold text-blue-600 mb-6">About Lingo Bingo</h2>
                     <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -45,19 +61,19 @@ const Home = () => {
                         their vocabulary and enhance their communication skills.
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div className="bg-white shadow-lg rounded-lg p-6">
-                            <h3 className="text-xl font-semibold text-blue-500 mb-4">Interactive Learning</h3>
+                        <div className="bg-white shadow-lg rounded-lg p-6 animate__animated animate__bounceInUp">
+                            <h3 className="text-xl font-semibold text-blue-500 mb-4 ">Interactive Learning</h3>
                             <p className="text-gray-600">
                                 Engage with interactive tools like flashcards, quizzes, and games that make vocabulary building exciting.
                             </p>
                         </div>
-                        <div className="bg-white shadow-lg rounded-lg p-6">
+                        <div className="bg-white shadow-lg rounded-lg p-6 animate__animated animate__bounceInUp">
                             <h3 className="text-xl font-semibold text-blue-500 mb-4">Tailored for You</h3>
                             <p className="text-gray-600">
                                 Whether you are a beginner or advanced learner, our adaptive system tailors content to your skill level and goals.
                             </p>
                         </div>
-                        <div className="bg-white shadow-lg rounded-lg p-6">
+                        <div className="bg-white shadow-lg rounded-lg p-6 animate__animated animate__bounceInUp">
                             <h3 className="text-xl font-semibold text-blue-500 mb-4">Track Your Progress</h3>
                             <p className="text-gray-600">
                                 Stay motivated with personalized progress tracking, achievement badges, and daily streaks.
@@ -68,7 +84,7 @@ const Home = () => {
             </section>
 
 
-            <section className="py-12 bg-white text-center">
+            <section className="py-12 bg-white text-center" data-aos="fade-up">
                 <div className="container mx-auto px-4">
                     <h2 className="text-4xl font-bold text-blue-600 mb-6">How It Works</h2>
                     <p className="text-lg text-gray-700 max-w-3xl mx-auto leading-relaxed mb-8">
@@ -134,7 +150,7 @@ const Home = () => {
             </section>
 
 
-            <section className="py-12 bg-blue-100 text-center">
+            <section className="py-12 bg-blue-100 text-center" data-aos="fade-up">
                 <h2 className="text-3xl font-semibold mb-4">Our Success</h2>
                 <div className="flex justify-center space-x-10">
                     <div>
