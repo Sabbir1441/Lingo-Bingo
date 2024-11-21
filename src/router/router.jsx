@@ -9,6 +9,8 @@ import Lessons from "../pages/Lessons";
 import AuthLayout from "../pages/AuthLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import ForgetPass from "../pages/ForgetPass";
+import UpdateProfile from "../pages/UpdateProfile";
 
 const router = createBrowserRouter([
     {
@@ -57,8 +59,16 @@ const router = createBrowserRouter([
             {
                 path: "/auth/register",
                 element: <Register></Register>
+            },
+            {
+                path: "/auth/forgetpass",
+                element: <ForgetPass></ForgetPass>
             }
         ]
+    },
+    {
+        path: "/update-profile",
+        element: <UpdateProfile></UpdateProfile>
     },
     {
         path: "*",

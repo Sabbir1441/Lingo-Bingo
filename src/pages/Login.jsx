@@ -4,16 +4,16 @@ import { AuthContext } from "../provider/AuthProvider";
 
 const Login = () => {
 
-    const {userLogin, setUser} = useContext(AuthContext);
+    const { userLogin, setUser } = useContext(AuthContext);
 
-        const handleSubmit = (e)=> {
-            e.preventDefault();
+    const handleSubmit = (e) => {
+        e.preventDefault();
 
-            const form = e.target;
-            const email = form.email.value;
-            const password = form.password.value;
-            console.log({email,password})
-            userLogin(email,password)
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log({ email, password })
+        userLogin(email, password)
             .then((result) => {
                 const user = result.user;
                 setUser(user)
@@ -21,7 +21,7 @@ const Login = () => {
             .catch((error) => {
                 alert(error.code);
             })
-        };
+    };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-[#97CBDC]">
@@ -35,7 +35,7 @@ const Login = () => {
                             <span className="label-text text-neutral-700">Email</span>
                         </label>
                         <input
-                        name="email"
+                            name="email"
                             type="email"
                             placeholder="Enter your email"
                             className="input input-bordered border-neutral-300 focus:outline-none focus:ring focus:ring-neutral-200 transition duration-300"
@@ -49,14 +49,14 @@ const Login = () => {
                             <span className="label-text text-neutral-700">Password</span>
                         </label>
                         <input
-                        name="password"
+                            name="password"
                             type="password"
                             placeholder="Enter your password"
                             className="input input-bordered border-neutral-300 focus:outline-none focus:ring focus:ring-neutral-200 transition duration-300"
                             required
                         />
                         <label className="label">
-                            <a href="#" className="label-text-alt text-neutral-500 hover:underline">Forgot password?</a>
+                            <Link to="/auth/forgetpass" className="label-text-alt text-neutral-500 hover:underline">Forgot password? </Link>
                         </label>
                     </div>
 
