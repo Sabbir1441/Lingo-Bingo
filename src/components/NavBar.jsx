@@ -20,8 +20,14 @@ const NavBar = () => {
                 <NavLink to="/profile">Profile</NavLink>
             </ul>
 
-            <div className="flex gap-4">
-                <img className="w-[50px]" src={userlogo} alt="" />
+            <div className="flex gap-4 items-center">
+
+                {
+                    user && user?.email ? (
+                        <img className="w-[50px] h-[50px] rounded-full" src={user?.photoURL} alt="" />
+                    ) : (<img className="w-[50px]" src={userlogo} alt="" />)
+                }
+                
                 {
                     user && user?.email ? (<button onClick={logOut} className="btn btn-active btn-neutral">Log out</button>
                     ) : (<Link to="/auth/login"><button className="btn btn-active btn-neutral">log in</button></Link>)

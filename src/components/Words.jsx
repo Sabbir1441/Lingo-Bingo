@@ -15,20 +15,20 @@ const Words = ({ words }) => {
 
     const { difficulty, example, lesson_no, meaning, part_of_speech, pronunciation, when_to_say, word } = words || {}
 
-    const pronounceWord = ({word}) => {
+    const pronounceWord = (word) => {
         if (!window.speechSynthesis) {
             alert('Speech synthesis is not supported in your browser.');
             return;
         };
 
-        const utterance = new SpeechSynthesisUtterance({word});
+        const utterance = new SpeechSynthesisUtterance(word);
         utterance.lang = 'ar-SA'; // Arabic
         window.speechSynthesis.speak(utterance);
     };
 
     const difficultyColors = {
-        easy: "border-l-4 border-green-400 bg-green-50",
-        medium: "border-l-4 border-yellow-400 bg-yellow-50",
+        easy: "border-l-4 border-green-500 bg-green-100 text-green-800",
+        medium: "border-l-4 border-yellow-500 bg-yellow-100 text-yellow-800",
     };
 
     const openModal = () => {
@@ -54,9 +54,9 @@ const Words = ({ words }) => {
                     <h3 className="text-2xl font-extrabold text-gray-800 mb-3">{word}</h3>
                     <button
                         className="btn btn-neutral flex items-center gap-2"
-                        onClick={() => pronounceWord({word})}
+                        onClick={() => pronounceWord(word)}
                     >
-                        <FaVolumeUp className="text-lg" /> 
+                        <FaVolumeUp className="text-lg" />
                     </button>
                 </div>
                 <p className="text-gray-700">
@@ -77,13 +77,19 @@ const Words = ({ words }) => {
                 </button>
             </div>
 
-            {/* Modal */}
             {modalOpen && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                <div
+                    className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+                    onKeyDown={(e) => {
+                        if (e.key === "Escape") closeModal(); // Close modal on Escape key
+                    }}
+                    tabIndex="0" // Make the modal focusable
+                >
                     <div className="bg-white rounded-lg shadow-lg max-w-md w-full p-6 relative">
                         <button
                             onClick={closeModal}
                             className="absolute top-3 right-3 text-gray-500 hover:text-gray-800"
+                            aria-label="Close modal"
                         >
                             <AiOutlineClose className="text-2xl" />
                         </button>

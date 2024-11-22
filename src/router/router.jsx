@@ -11,6 +11,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import ForgetPass from "../pages/ForgetPass";
 import UpdateProfile from "../pages/UpdateProfile";
+import PrivateRoutes from "./PrivateRoutes";
+import NotFound from "../pages/NotFound";
 
 const router = createBrowserRouter([
     {
@@ -29,7 +31,9 @@ const router = createBrowserRouter([
             },
             {
                 path: "/tutorials",
-                element: <Tutorials></Tutorials>,
+                element: <PrivateRoutes>
+                    <Tutorials></Tutorials>
+                </PrivateRoutes>,
             },
             {
                 path: "/about",
@@ -37,11 +41,21 @@ const router = createBrowserRouter([
             },
             {
                 path: "/profile",
-                element: <Profile></Profile>,
+                element: <PrivateRoutes>
+                    <Profile></Profile>
+                </PrivateRoutes>,
+            },
+            {
+                path: "/update-profile",
+                element: <PrivateRoutes>
+                    <UpdateProfile></UpdateProfile>
+                </PrivateRoutes>,
             },
             {
                 path: "/lessons/:lesson_no",
-                element: <Lessons></Lessons>,
+                element: <PrivateRoutes>
+                    <Lessons></Lessons>
+                </PrivateRoutes>,
                 loader: ()=> fetch("../vocabularies.json")
             },
 
@@ -67,12 +81,8 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: "/update-profile",
-        element: <UpdateProfile></UpdateProfile>
-    },
-    {
         path: "*",
-        element: <h1>error</h1>,
+        element: <NotFound></NotFound>,
     },
 ])
 export default router;
