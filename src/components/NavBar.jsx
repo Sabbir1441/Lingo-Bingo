@@ -24,7 +24,7 @@ const NavBar = () => {
 
                 {
                     user && user?.email ? (
-                        <img className="w-[50px] h- rounded-full" src={user?.photoURL} alt="" />
+                        <img className="w-[50px] h-[50px] rounded-full" src={user?.photoURL} alt="" />
                     ) : (<img className="w-[50px]" src={userlogo} alt="" />)
                 }
                 
