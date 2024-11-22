@@ -1,11 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../provider/AuthProvider";
+import { auth, AuthContext } from "../provider/AuthProvider";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const Register = () => {
     const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [error , setError ]= useState({});
+    const [error, setError] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -15,27 +17,44 @@ const Register = () => {
         const email = form.get("email");
         const photo = form.get("photo");
         const password = form.get("password");
-        console.log({name, email, photo, password});
+        if (!/^(?=.*[A-Z])(?=.*[a-z]).{6,}$/.test(password)) {
+            setError(
+                "Password must contain at least 6 characters, including an uppercase letter, a lowercase letter, and a number."
+            );
+            return;
+        };
 
         createNewUser(email, password,)
-        .then((result)=>{
-            const user = result.user;
-            setUser(user)
-            updateUserProfile({ displayName: name , photoURL: photo})
-                .then(() => {
-                    console.log(user)
-                    navigate("/")
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        })
-        .catch((error)=>{
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode,errorMessage)
-        })
-    }
+            .then((result) => {
+                const user = result.user;
+                setUser(user)
+                updateUserProfile({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        navigate("/")
+                    })
+                    .catch((err) => {
+                    });
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // console.log(errorCode,errorMessage)
+            })
+    };
+
+    const provider = new GoogleAuthProvider();
+
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, provider)
+            .then(result => {
+                const user = result.user;
+                setUser(user);
+                navigate("/");
+            })
+            .catch(error => {
+
+            })
+    };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-[#97CBDC]">
@@ -98,6 +117,11 @@ const Register = () => {
                             className="input input-bordered border-neutral-300 focus:outline-none focus:ring focus:ring-neutral-200 transition duration-300"
                             required
                         />
+                        {error && (
+                            <p className="text-red-500 text-sm mt-2">
+                                {error}
+                            </p>
+                        )}
                     </div>
 
                     {/* Register Button */}
@@ -116,6 +140,19 @@ const Register = () => {
                             <span className="text-red-500">Login</span>
                         </Link>
                     </p>
+
+                    {/* Divider */}
+                    <div className="divider text-neutral-500 mt-6">OR</div>
+
+                    {/* Google Login */}
+                    <div className="flex justify-center mt-4">
+                        <button onClick={handleGoogleSignIn} className="btn btn-outline border-neutral-300 text-neutral-600 hover:bg-neutral-800 hover:text-neutral-100 flex items-center gap-2">
+                            <span className="text-neutral-500 text-xl">
+                                <i className="fab fa-google"></i>
+                            </span>
+                            Google
+                        </button>
+                    </div>
 
                 </form>
             </div>

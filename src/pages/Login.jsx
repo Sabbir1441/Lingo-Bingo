@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../provider/AuthProvider";
+import { auth, AuthContext } from "../provider/AuthProvider";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 const Login = () => {
 
@@ -8,7 +10,7 @@ const Login = () => {
     const [error, setError] = useState({});
     const location = useLocation();
     const navigate = useNavigate();
-    console.log(location)
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,7 +18,7 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log({ email, password })
+
         userLogin(email, password)
             .then((result) => {
                 const user = result.user;
@@ -24,9 +26,25 @@ const Login = () => {
                 navigate(location?.state ? location.state : "/");
             })
             .catch((err) => {
-                setError({ ...error, login:err.code });
+                setError({ ...error, login: err.code });
             });
     };
+
+    const provider = new GoogleAuthProvider();
+
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, provider)
+            .then(result => {
+                const user = result.user;
+                setUser(user);
+                navigate(location?.state ? location.state : "/");
+            })
+            .catch(error => {
+
+            })
+    };
+
+
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-[#97CBDC]">
@@ -85,7 +103,7 @@ const Login = () => {
 
                     {/* Google Login */}
                     <div className="flex justify-center mt-4">
-                        <button className="btn btn-outline border-neutral-300 text-neutral-600 hover:bg-neutral-800 hover:text-neutral-100 flex items-center gap-2">
+                        <button onClick={handleGoogleSignIn} className="btn btn-outline border-neutral-300 text-neutral-600 hover:bg-neutral-800 hover:text-neutral-100 flex items-center gap-2">
                             <span className="text-neutral-500 text-xl">
                                 <i className="fab fa-google"></i>
                             </span>
