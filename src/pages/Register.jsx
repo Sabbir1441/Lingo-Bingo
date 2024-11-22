@@ -7,22 +7,25 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 const Register = () => {
     const { createNewUser, setUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [error, setError] = useState({});
+    const [error, setError] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setError("");
 
         const form = new FormData(e.target);
         const name = form.get("name");
         const email = form.get("email");
         const photo = form.get("photo");
         const password = form.get("password");
+
         if (!/^(?=.*[A-Z])(?=.*[a-z]).{6,}$/.test(password)) {
             setError(
                 "Password must contain at least 6 characters, including an uppercase letter, a lowercase letter, and a number."
             );
             return;
         };
+
 
         createNewUser(email, password,)
             .then((result) => {
@@ -33,13 +36,13 @@ const Register = () => {
                         navigate("/")
                     })
                     .catch((err) => {
+                        setError("Failed to update profile.");
                     });
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                // console.log(errorCode,errorMessage)
-            })
+                const errorMessage = error.message || "An unexpected error occurred.";
+                setError(errorMessage);
+            });
     };
 
     const provider = new GoogleAuthProvider();
@@ -47,8 +50,6 @@ const Register = () => {
     const handleGoogleSignIn = () => {
         signInWithPopup(auth, provider)
             .then(result => {
-                const user = result.user;
-                setUser(user);
                 navigate("/");
             })
             .catch(error => {
@@ -122,6 +123,7 @@ const Register = () => {
                                 {error}
                             </p>
                         )}
+
                     </div>
 
                     {/* Register Button */}
