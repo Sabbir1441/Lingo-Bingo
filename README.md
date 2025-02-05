@@ -6,10 +6,6 @@ Lingo Bingo is an interactive platform designed to help users improve their voca
 ## Live Project Link
 You can check out the live project here: [Lingo Bingo](https://lingo-bingo-822a4.web.app/)
 
-### 2. Screenshot (if possible)
-![Lingo Bingo Screenshot](insert-your-screenshot-link-here)  
-*Note: Replace this with an actual screenshot of your project, or upload it to a hosting platform like Imgur and update the link.*
-
 ### 3. Technologies Used
 - **React.js**: For building the user interface and managing the application's state.
 - **Firebase Authentication**: For secure user login and registration, including Google authentication.
